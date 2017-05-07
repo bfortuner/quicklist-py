@@ -3,6 +3,9 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+# Ebay config
+ebay.yaml
+
 # C extensions
 *.so
 

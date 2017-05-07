@@ -2,11 +2,13 @@ import datetime
 from ebaysdk.exception import ConnectionError
 from ebaysdk.finding import Connection
 
-try:
-    api = Connection(appid='JonFerna-qwiklist-PRD-a69e0185b-1b78dc2f', config_file=None)
-    response = api.execute('findItemsAdvanced', {'keywords': 'legos'})        
+EBAY_APP_ID = 'BrendanF-QuickLis-PRD-469e0185b-8aa1f2e3'
 
-    assert(response.reply.ack == 'Success')  
+try:
+    api = Connection(appid=EBAY_APP_ID, config_file=None)
+    response = api.execute('findItemsAdvanced', {'keywords': 'legos'})
+
+    assert(response.reply.ack == 'Success')
     assert(type(response.reply.timestamp) == datetime.datetime)
     assert(type(response.reply.searchResult.item) == list)
 

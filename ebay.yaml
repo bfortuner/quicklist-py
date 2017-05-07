@@ -3,22 +3,21 @@ name: ebay_api_config
 # Trading API Sandbox - https://www.x.com/developers/ebay/products/trading-api
 api.sandbox.ebay.com:
     compatability: 719
-    appid: JonFerna-qwiklist-SBX-d69e0185b-b4682cd3
-    certid: SBX-69e0185b79cb-036b-4543-a7d0-577a
-    devid: b439ae33-7fba-4747-9902-3c4615b03460
-    token: AgAAAA**AQAAAA**aAAAAA**IHIOWQ**nY+sHZ2PrBmdj6wVnY+sEZ2PrA2dj6wFk4GlAZOCpA+dj6x9nY+seQ**xDAEAA**AAMAAA**9lKHCxUnmL9nQM9PvBi6I5lmRwi+en1TsFppkp1Vr1IpIw8qGG8V0twVFraDnCbqPKI5u5dcYyUgyuwKx/EksN/wVCOM6OErOygantfV7VPsmDNzw3LuzQiQlcJE1TVubOYYEjXXj4e6TsEcFCUaCcQBqx3/Fm9vGpSYFGpZZiG0OoxcHfF607Lwn0q5vpbQvE+703W0fOc0SKtLM2hJFbCiFtfGwRLBmN0+dY4tMFs+EBbxub0iBp+WHxvzvHuLtxTDCNZG2lQlCf9TLBKE+O3+q8o9ZFan93u86o8IkT+knP98pLhnEfamF0ZZ5fWLLTMHu5Bvbxp1+GkFiB0YzKWwHFsPZ0hIEe8YOO3cbm6WDjqweSOI/ZTRodVujvPR+HpAmZcQ9PgwD5z9+8zMZC3xhdR48ZWWDwBYfjr/+Vvya3oZR9fo6nINgGFHQxxEGo5sKWl3PR0segCV6XDWdhToz/6Ahpeo6/1k/7mmvC1Fg8xl4twgfNIZFcQdgJxk3zReLGjFjk4lCSKyH7x8IMAHfEfReCieC4vsdw+ZcqF2cMp78/jBPjL3vADA0BZ41R614HfNxFi/JXgAnCfW220mWxbJkMribnxY/3gw67NwD7tp7OEdDA7mtZObUfUgk1Q8volodjrnCWW0jOwzmfmGEdd8yA3L4bPUzpAfSXn9xuo9mI6YJzUPkLjWPS6p4uRcAMTxmwfSX9Xxl8BKmOO9tld8/0iKFflgV28Dt4gQn2yW14yjIECoAbQBYAgU
+    appid: BSBX-08fe9d67e9d4-c707-4a33-93b5-177a
+    devid: 794e0675-2845-4410-953a-740f4fa265e0
+    token: AgAAAA**AQAAAA**aAAAAA**BIAOWQ**nY+sHZ2PrBmdj6wVnY+sEZ2PrA2dj6wFk4GlAZOApQydj6x9nY+seQ**0zAEAA**AAMAAA**5Rcecfj8H0oNoa8VTq9gGp7WUDb8TZI9T5KcGa17DTgg0YL5qVRL0fJMj+Nyue0DeoH+jvZeMRMpViBJPHvvMf7HKTviBAZi/4fWZNICUQsFCdaybrlMGJMZ+7njmTaucveiGiSpPaLl2kCwsAbRCXMl+EhqfV0HqDezVL0IJNNudI0jPJzxqLscKvGRVfmirIhgnGFrjDLfbf3lq1iUJ+X2cN4PgcV9OyuzlO40mIAkCvTXb+HyLdrktEgBnWophZpymtNOooPZEJK/3GfZwjZDgArAsZnWHU4mVmx3sqDA88g85dBxsMEVBDsGGB30cP9J8mCxWjdllxAVUq1CXCjfkaQhSQO2brBnhZ8g0B2WIeB1HH98beqZLQ9IRPAQKWhr/s7ioEEIYIH3H0yXNtSQz1foQwmlqpD6SMybyqObx2kS51g7YAuA2tS6r6T7ITv4O5arfioT8jGbHtNwikJmP2HmtQUZrZPL3HLLdUj5KaJ3R1tRkLqcdqb0q1L7BDZUtZpmvbH3yt8FrBJfu+fla6sZxHGaO624CHeIKBjMoM+vh0Kvmcel/zyReP78pVlhgo36OmxNUcZY2uOkTaQw3wOw08wuF+QS6RxGKWaEtmCN0t/X9O1KB06QUTlzVGrJA9DM7G1kRfeI5KpK53PTJsqskODPyCSxfO8Ngj1rpM1Ch3fNI8Sux2wcgjdRxmwaTrTOPBokfDxQ7SL1KgmsYrOJC6k9T+Mdz5lL0w9+M/SVvkx1hoHvldFHC5Cl
 
 # Trading API - https://www.x.com/developers/ebay/products/trading-api
 api.ebay.com:
     compatability: 719
-    appid: JonFerna-qwiklist-PRD-a69e0185b-1b78dc2f
-    certid: PRD-69e0185bc4ac-7626-4246-a6b1-f394
-    devid: b439ae33-7fba-4747-9902-3c4615b03460
-    token: AgAAAA**AQAAAA**aAAAAA**mm4OWQ**nY+sHZ2PrBmdj6wVnY+sEZ2PrA2dj6AEk4CpAJWFqAydj6x9nY+seQ**sboDAA**AAMAAA**RpVWHn56YjWkDayCPm7ID/MIVVVggRlkPTBQ6p83T7OlMwll+XnzcmeGZoCeknqTMmr5gyalWuSn+HZKeNtFJUZyfLSymDNnSxS6EXvLVzXU0uXgzyWAwNl+HT/3ArcoZBcOW2uxY1/hFDqaGl0uKwk5WVCJZwpPbuUCXfDYsMGIrOtnLx/vRMOUZCOALtH4wx/a87j7+M6Rspuqiv53lTFU2Kurlq1UGdvwJM5VwBERUUDmEmxS/DozKAPMGHrFRjJcRlwMWUTh8AIsYoLKoW73MeXCIqZNcYMrYxxc5vvS2BGVc5n2Mj6AcMfNBWYb2peoxKU3ELBcagKpa2xu2BT+SzIpQUSxGp2Exoiw5/0BZnZfgS5H8hwxUoxmgb53Q9gN0DOKI7rHvdLV+ymMXOSivNOk4az9F+KY3kYS8TC/TYXb/nE4VUnxSSZXHj7sWH1MqdMP0tG5NDwQQH6O6qUr0OgnAAqDpnesJM2rUTOFqyGn1fZDhbFFX4usKh0Rxt+NJkhj1zbjU6i9qizRShmTpyjUtuTAKivFyAr9WYn0c3eKNeklSU2iu30crYAW4wLs53zHY2P9Ox3vnbvLWhx6JERigAAb429YD3a10gTk3CDMJcDYSKJ7KuwSvAoKJ04c+fSUP71dFtHvJlVkjRXMdG9ObimlEtxUlyNljLsbfHDuFwXEh2OXcLqtUxUKxkA+oEAmuLjgCCCiIuEPQWyFsp46HH7cBewDPTMpYuknflXoFg7G4wo6B2ACm50w
+    appid: BrendanF-QuickLis-PRD-469e0185b-8aa1f2e3
+    certid: PRD-69e0185b8c80-09c5-4f0c-82a1-a6fc
+    devid: 794e0675-2845-4410-953a-740f4fa265e0
+    token: AgAAAA**AQAAAA**aAAAAA**KoAOWQ**nY+sHZ2PrBmdj6wVnY+sEZ2PrA2dj6ABl4SjC5eHpwqdj6x9nY+seQ**vboDAA**AAMAAA**JN/xRibWBG6tTKSsIh2N6GrI2xp8O914yLBzZ41KQjBnnThWo2Xn+OX6QCj3/UTZxGUlN29uv+qCnZvfHmZ+VC1F1ud2dWpW5RAlEjzBnA/u2K/1aGECO7reVBEcj7xQ0GB3deyRN/nQtvU3A8uWYfVylSsdXc3fQ2RUlJnPOoPN55oYDwzZv99VgQc7KxRZKc1tcvUNFrqny657gH9GPuuQ8anbdU11zytzGMMjtGkhBMDjelWDJgOtSoWOMIG5+hsnZHVGqusGpfe6L6ytz87NfjbxA7fczno0L2Nr0pZPwpDBHhi0VwkqTWdPUMguwMPenvJPou2XAZ37FJYNWMZfhJhhne3xiw7Yu6lyc25C3Id0fxzpQQX065v2NAot9WVnj3dvJ6btk0MsQYQ5ctJxymzuJpb3yv4GMf+bREBHeaca/nLirVuWE6kNArPdQsWCWcMZZFaMQ0kD4KqmYCPCg1kvIf243MzATOQdjY2lcnXba/M2sNAc3Jf7fHGLNPPl5mL+f8n4es6x5p2BuQm3Q9Ddeh6EV76yllxU6nbn1VI2+wAQBN/CmKXwyy5EpAriXGyUw6TtQeGwZemTRDfYqNQICbREZnzi10czWefxJMQ+HwdDZugwPSjKkVJIG12LR8+Zj7Cyfk44qg3b2FmnvqNQQ401QeeJkLnVp7K4snQhcDx64FNa6P681PMHlUrZO77+jiI4hlxtKlhyDOT5SBJYpvILmZ6GcZ+B24H2bYgMtR7Pd2F5aIMUPpjX
 
 # Finding API - https://www.x.com/developers/ebay/products/finding-api
 svcs.ebay.com:
-    appid: JonFerna-qwiklist-PRD-a69e0185b-1b78dc2f
+    appid: BrendanF-QuickLis-SBX-808fe9d67-417dda17
     version: 1.0.0
 
 # Shopping API - https://www.x.com/developers/ebay/products/shopping-api
