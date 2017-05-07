@@ -204,13 +204,13 @@ def get_labels_from_predictions(predictions, max_labels=5):
 
 def build_item(labels, img_url):
     item = EBAY_ADD_ITEM_TEMPLATE.copy()
-    item['Item']['Title'] = labels[0]+', '+labels[1]
+    item['Item']['Title'] = ' '.join(labels[:2])
     item['Item']['Description'] = ' '.join(labels)
     category_id = get_suggested_category(labels)
     item['Item']['PrimaryCategory']['CategoryID'] = category_id
     item['Item']['PayPalEmailAddress'] = USER_EBAY_EMAIL
     item['Item']['PictureDetails']['PictureURL'] = img_url
-    estimated_price = get_auction_price(' '.join(labels), category_id)
+    estimated_price = get_auction_price(' '.join(labels[:3]), category_id)
     item['Item']['StartPrice'] = estimated_price
     return item
 
@@ -275,9 +275,11 @@ def get_suggested_category(labels):
 EBAY_CATEGORIES = load_json_from_file('our_supported_ebay_categories.json')
 
 if __name__ == "__main__":
-    labels = get_labels_from_predictions(TEST_PREDICTIONS, 3)
-    print(labels)
-    print(build_item(labels, TEST_IMG_URL))
+    print(add_item(TEST_PREDICTIONS))
+    #labels = get_labels_from_predictions(TEST_PREDICTIONS, 3)
+    #print(labels)
+    #labels = ['Appliance', 'Fridge', 'Refrigerator']
+    #print(build_item(labels, TEST_IMG_URL))
     #add_item(TEST_PREDICTIONS)
     #print(get_suggested_category(['laptop','computer']))
     #print(TEST_IMG_URL)
