@@ -1,20 +1,35 @@
 import trading
-# import connect
-#import search
+#import connect
+import search
 import yaml
+import json
+import os
 
+def get_config():
+    with open("ebay.yaml", 'r') as stream:
+        try:
+            config = yaml.load(stream)
+            return config
+        except yaml.YAMLError as exc:
+            print(exc)
 
-with open("ebay.yaml", 'r') as stream:
-    try:
-        config = yaml.load(stream)
-        print("loading config")
-    except yaml.YAMLError as exc:
-        print(exc)
-
+config = get_config()
 DOMAIN = 'api.sandbox.ebay.com'
+S3_URL='https://s3.amazonaws.com/qwiklist/'
+OPTS = {
+    'domain':DOMAIN,
+    'debug':True,
+    'config_fpath':'ebay.yaml',
+    'appid':config[DOMAIN]['appid'],
+    'devid':config[DOMAIN]['devid'],
+    'certid':config[DOMAIN]['certid'],
+    'token':config[DOMAIN]['token'],
+}
+USER_EBAY_EMAIL = 'bfortuner@gmail.com' # "tkeefdddder@gmail.com",
 
-TEST_LABEL = {
-   u'PK':u'images/image2.jpg',
+TEST_IMG_URL = 'http://s3.amazonaws.com/qwiklist/images/image-11c9cc70-02ec-4fae-89b0-8b0ce026b511.jpg' #'http://i.ebayimg.com/images/g/kLAAAOSwol5Yx1Mf/s-l1600.jpg'#'https://s3.amazonaws.com/qwiklist/images/image2.jpg'
+TEST_PREDICTIONS = {
+   u'PK':'images/image-61e16b6c-ecd8-432b-be2c-244babe233f8.jpg',
    u'Labels':{
       u'Labels':[
          {
@@ -70,23 +85,6 @@ TEST_LABEL = {
    }
 }
 
-S3_URL='https://s3.amazonaws.com/qwiklist/'
-
-        # api = Trading(domain=EBAY_DOMAIN, debug=opts.debug, config_file=opts.yaml, appid=opts.appid,
-        #               certid=opts.certid, devid=opts.devid, warnings=False)
-
-opts = {
-    'domain':DOMAIN,
-    'debug':True,
-    'config_fpath':'ebay.yaml',
-    'appid':config[DOMAIN]['appid'],
-    'devid':config[DOMAIN]['devid'],
-    'certid':config[DOMAIN]['certid'],
-    'token':config[DOMAIN]['token'],
-}
-print("OPTIONS------")
-print(opts)
-
 EBAY_TEST_ITEM = {
     "Item": {
         "Title": "Harry Potter and the Philosopher's Stone",
@@ -102,7 +100,7 @@ EBAY_TEST_ITEM = {
         "ListingType": "Chinese",
         "PaymentMethods": "PayPal",
         "PayPalEmailAddress": "tkeefdddder@gmail.com",
-        "PictureDetails": {"PictureURL": "http://i1.sandbox.ebayimg.com/03/i/00/30/07/20_1.JPG?set_id=8800005007"},
+        "PictureDetails": {"PictureURL": ""},
         "PostalCode": "95125",
         "Quantity": "1",
         "ReturnPolicy": {
@@ -124,6 +122,8 @@ EBAY_TEST_ITEM = {
     }
 }
 
+#https://developer.ebay.com/devzone/xml/docs/reference/ebay/types
+##https://developer.ebay.com/devzone/finding/callref/Enums/conditionIdList.html
 EBAY_ADD_ITEM_TEMPLATE = {
     "Item": {
         "Title": "",
@@ -140,9 +140,9 @@ EBAY_ADD_ITEM_TEMPLATE = {
         "ListingDuration": "Days_7",
         "ListingType": "Chinese",
         "PaymentMethods": "PayPal",
-        "PayPalEmailAddress": "tkeefdddder@gmail.com",
-        "PictureDetails": {"PictureURL": "http://i1.sandbox.ebayimg.com/03/i/00/30/07/20_1.JPG?set_id=8800005007"},
-        "PostalCode": "95125",
+        "PayPalEmailAddress": "",
+        "PictureDetails": {"PictureURL": ""},
+        "PostalCode": "98102", #THIS ONE NEEDS FIXING
         "Quantity": "1",
         "ReturnPolicy": {
             "ReturnsAcceptedOption": "ReturnsAccepted",
@@ -156,36 +156,114 @@ EBAY_ADD_ITEM_TEMPLATE = {
             "ShippingServiceOptions": {
                 "ShippingServicePriority": "1",
                 "ShippingService": "USPSMedia",
-                "ShippingServiceCost": "2.50"
+                "ShippingServiceCost": "5.00"
             }
         },
         "Site": "US"
     }
 }
 
-
-FILTERED_LABELS = ['person', 'human', 'dog']
-
-def get_keywords_from_labels(n=3):
+FILTERED_LABELS = set(['person', 'human', 'dog'])
 
 
+def add_item(predictions):
+    labels = get_labels_from_predictions(predictions)
+    img_url = os.path.join(S3_URL, predictions['PK'])
+    print(img_url)
+    item = build_item(labels, img_url)
+    print("ITEM",item)
+    trading.verifyAddItem(OPTS, item)
 
+def get_labels_from_predictions(predictions, max_labels=5):
+    labels = []
+    i = 0
+    for label in predictions['Labels']['Labels']:
+        if label['Name'] not in FILTERED_LABELS:
+            labels.append(label['Name'])
+        i += 1
+        if i >= max_labels:
+            return labels
+    return labels
 
 def build_item(labels, img_url):
-    get_keywords = get_keywords_from_labels()
+    item = EBAY_ADD_ITEM_TEMPLATE.copy()
+    item['Item']['Title'] = labels[0]
+    item['Item']['Description'] = ' '.join(labels)
+    item['Item']['PrimaryCategory']['CategoryID'] = get_suggested_category(labels)
+    item['Item']['PayPalEmailAddress'] = USER_EBAY_EMAIL
+    item['Item']['PictureDetails']['PictureURL'] = img_url
+    item['Item']['StartPrice'] = get_item_price(labels)
+    return item
 
-    return EBAY_ITEM_TEMPLATE
+def get_item_price(keywords):
+    return str(10.0)
 
-def add_item(labeled_item):
-    print("Adding Item", labeled_item)
-    img_url = S3_URL + labeled_item['PK']
-    labels = labeled_item['Labels']['Labels']
-    print(img_url)
-    print(labels)
-    trading.verifyAddItem(opts, myitem)
+def get_category_id(labels):
+    for l in labels:
+        l = l.lower()
+        if l in EBAY_CATEGORIES:
+            return EBAY_CATEGORIES[l]
+    raise Exception("category not found")
 
+def get_categories(tree_level=1):
+    categories = trading.categories(OPTS, tree_level)
+    cat_json = json.dumps(categories)
+    with open('ebay_categories.json', 'w') as f:
+        f.write(cat_json)
 
+def save_dict_to_file(obj_dict, fpath):
+    obj_json = json.dumps(obj_dict)
+    with open(fpath, 'w') as f:
+        f.write(obj_json)
 
+def load_json_from_file(fpath):
+    #python -m json.tool ebay_categories.json >> ebay_cats.json
+    with open(fpath, 'r') as f:
+        categories_dict = json.load(f)
+    return categories_dict
+
+def upload_picture(img_url):
+    img_name = img_url.split('/')[-1]
+    return trading.uploadPicture(OPTS, img_url, img_name)
+
+def get_category_json_from_file(fpath='ebay_categories.json'):
+    with open(fpath,'r') as f:
+        return json.load(f)['CategoryArray']['Category']
+
+def create_category_to_id_mappings():
+    our_categories = {} #'name':id
+    ebay_categories = get_category_json_from_file()
+    for cat in ebay_categories:
+        cat_name = cat['CategoryName'].lower().split(' ')[0]
+        cat_id = cat['CategoryID']
+        our_categories[cat_name] = cat_id
+    save_dict_to_file(our_categories, 'our_supported_ebay_categories.json')
+    return our_categories
+
+def get_suggested_category(labels):
+    DOMAIN
+    query_str = ' '.join(labels)
+    print(query_str)
+    categories = trading.get_suggested_categories(OPTS, query_str)
+    if categories['CategoryCount'] == 0:
+        return get_category_id(labels)
+    category = categories['SuggestedCategoryArray']['SuggestedCategory'][0]['Category']
+    name = category['CategoryName']
+    cat_id = category['CategoryID']
+    print("Found category", name)
+    return cat_id
+
+EBAY_CATEGORIES = load_json_from_file('our_supported_ebay_categories.json')
 
 if __name__ == "__main__":
-    add_item(TEST_LABEL)
+    add_item(TEST_PREDICTIONS)
+    #print(get_suggested_category(['laptop','computer']))
+    #print(TEST_IMG_URL)
+    #upload_picture()
+    #labels = get_labels_from_predictions(TEST_PREDICTIONS)
+    #print(build_item(labels,'http://myimgurl'))
+    #print(get_first_category(['hairy','laptop']))
+    #add_item(TEST_LABEL)
+    # get_categories(1)
+    # load_categories()
+    #get_category_to_id_mapping(categories)

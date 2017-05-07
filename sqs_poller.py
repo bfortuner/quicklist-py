@@ -21,16 +21,14 @@ conn = boto.sqs.connect_to_region(
 q = conn.create_queue(conf.get('sqs-queue-name'))
 
 while(True):
-        for m in q.get_messages():
-                print '%s: %s' % (m, m.get_body())
-                print(type(m.get_body()))
-                json_string = m.get_body()
-                obj = json.loads(json_string)
-                print(type(obj))
-                print(obj)
-                quicklist.add_item(obj)
-#                q.delete_message(m)
-        time.sleep(1)
+    for m in q.get_messages():
+        print("hey")
+        print '%s: %s' % (m, m.get_body())
+        json_string = m.get_body()
+        obj = json.loads(json_string)
+        quicklist.add_item(obj)
+        q.delete_message(m)
+    time.sleep(1)
 
 
 

@@ -19,8 +19,7 @@ from ebaysdk.utils import getNodeText
 from ebaysdk.exception import ConnectionError
 from ebaysdk.trading import Connection as Trading
 
-
-EBAY_DOMAIN = 'api.sandbox.ebay.com'
+PROD_DOMAIN = 'api.ebay.com'
 
 def init_options():
     usage = "usage: %prog [options]"
@@ -100,7 +99,6 @@ def verifyAddItem(opts, item):
     try:
         api = Trading(domain=opts['domain'], debug=opts['debug'], config_file=opts['config_fpath'], appid=opts['appid'],
                       certid=opts['certid'], devid=opts['devid'], warnings=False)
-        print("Creating item...")
         api.execute('AddItem', item)
         dump(api)
 
@@ -114,7 +112,7 @@ def verifyAddItemErrorCodes(opts):
     """
 
     try:
-        api = Trading(domain=EBAY_DOMAIN, debug=opts.debug, config_file=opts.yaml, appid=opts.appid,
+        api = Trading(domain=opts['domain'], debug=opts.debug, config_file=opts.yaml, appid=opts.appid,
                       certid=opts.certid, devid=opts.devid, warnings=False)
 
         myitem = {
@@ -188,20 +186,20 @@ def verifyAddItemErrorCodes(opts):
         print(e.response.dict())
 
 
-def uploadPicture(opts):
+def uploadPicture(opts, img_url, img_name):
 
     try:
-        api = Trading(debug=opts.debug, config_file=opts.yaml, appid=opts.appid,
-                      certid=opts.certid, devid=opts.devid, warnings=True)
+        api = Trading(domain=opts['domain'], debug=opts['debug'], config_file=opts['config_fpath'], appid=opts['appid'],
+                      certid=opts['certid'], devid=opts['devid'], warnings=False)
 
         pictureData = {
             "WarningLevel": "High",
-            "ExternalPictureURL": "http://developer.ebay.com/DevZone/XML/docs/images/hp_book_image.jpg",
-            "PictureName": "WorldLeaders"
+            "ExternalPictureURL": img_url,
+            "PictureName": img_name
         }
 
         api.execute('UploadSiteHostedPictures', pictureData)
-        dump(api)
+        return dump(api)
 
     except ConnectionError as e:
         print(e)
@@ -297,24 +295,42 @@ def getOrders(opts):
         print(e.response.dict())
 
 
-def categories(opts):
+def categories(opts, tree_level):
 
     try:
-        api = Trading(debug=opts.debug, config_file=opts.yaml, appid=opts.appid,
-                      certid=opts.certid, devid=opts.devid, warnings=True, timeout=20, siteid='101')
+        api = Trading(domain=opts['domain'], debug=opts['debug'], config_file=opts['config_fpath'], appid=opts['appid'],
+                      certid=opts['certid'], devid=opts['devid'], warnings=False, timeout=20, siteid='101')
 
-        callData = {
+        q = {
             'DetailLevel': 'ReturnAll',
-            'CategorySiteID': 101,
+            'CategorySiteID': 0,
             'LevelLimit': 4,
         }
 
         api.execute('GetCategories', callData)
-        dump(api, full=False)
+        return dump(api, full=False)
 
     except ConnectionError as e:
         print(e)
         print(e.response.dict())
+
+
+def get_suggested_categories(opts, keywords):
+    try:
+        api = Trading(domain=PROD_DOMAIN, debug=opts['debug'], config_file=opts['config_fpath'], appid=opts['appid'],
+                      certid=opts['certid'], devid=opts['devid'], warnings=False)
+
+        callData = {
+            'Query': keywords
+        }
+
+        api.execute('GetSuggestedCategories', callData)
+        return dump(api, full=True)
+
+    except ConnectionError as e:
+        print(e)
+        print(e.response.dict())
+
 
 '''
 api = trading(domain=EBAY_DOMAIN)
@@ -322,31 +338,31 @@ api = trading(domain=EBAY_DOMAIN)
 
 api.execute('GetCategories', {
     'DetailLevel': 'ReturnAll',
-    'CategorySiteID': 101,
+    'CategorySiteID': 0,
     'LevelLimit': 4,
 })
 
 '''
 
-if __name__ == "__main__":
-    (opts, args) = init_options()
+# if __name__ == "__main__":
+#     (opts, args) = init_options()
 
-    print("Trading API Samples for version %s" % ebaysdk.get_version())
+#     print("Trading API Samples for version %s" % ebaysdk.get_version())
 
-    """
-    run(opts)
-    feedback(opts)
-    verifyAddItem(opts)
-    getTokenStatus(opts)
-    verifyAddItemErrorCodes(opts)
-    uploadPicture(opts)
-    uploadPictureFromFilesystem(opts, ("%s/test_image.jpg" % os.path.dirname(__file__)))
-    memberMessages(opts)
-    categories(opts)
-    """
+#     """
+#     run(opts)
+#     feedback(opts)
+#     verifyAddItem(opts)
+#     getTokenStatus(opts)
+#     verifyAddItemErrorCodes(opts)
+#     uploadPicture(opts)
+#     uploadPictureFromFilesystem(opts, ("%s/test_image.jpg" % os.path.dirname(__file__)))
+#     memberMessages(opts)
+#     categories(opts)
+#     """
 
-    getTokenStatus(opts)
-    verifyAddItem(opts)
+#     getTokenStatus(opts)
+#     verifyAddItem(opts)
 
-    #verifyAddItemErrorCodes(opts)
-    # getOrders(opts)
+#     #verifyAddItemErrorCodes(opts)
+#     # getOrders(opts)

@@ -21,11 +21,14 @@ def dump(api, full=False):
     print("Response ETREE: %s" % api.response.dom())
 
     if full:
-        print(api.response.content)
-        print(api.response.json())
-        print("Response Reply: %s" % api.response.reply)
+        pass
+        # print(api.response.content)
+        # print(api.response.json())
+        # print("Response Reply: %s" % api.response.reply)
     else:
-        dictstr = "%s" % api.response.dict()
-        print("Response dictionary: %s..." % dictstr[:])
-        replystr = "%s" % api.response.reply
-        print("Response Reply: %s" % replystr[:])
+        pass
+        # dictstr = "%s" % api.response.dict()
+        # print("Response dictionary: %s..." % dictstr[:])
+        # replystr = "%s" % api.response.reply
+        # print("Response Reply: %s" % replystr[:])
+    return api.response.dict()
