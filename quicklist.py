@@ -260,11 +260,9 @@ def create_category_to_id_mappings():
     return our_categories
 
 def get_suggested_category(labels):
-    DOMAIN
     query_str = ' '.join(labels)
-    print(query_str)
     categories = trading.get_suggested_categories(OPTS, query_str)
-    if categories['CategoryCount'] == 0:
+    if categories is None or categories['CategoryCount'] == 0:
         return get_category_id(labels)
     category = categories['SuggestedCategoryArray']['SuggestedCategory'][0]['Category']
     name = category['CategoryName']

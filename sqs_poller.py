@@ -22,13 +22,17 @@ q = conn.create_queue(conf.get('sqs-queue-name'))
 
 while(True):
     for m in q.get_messages():
-        print("hey")
+      try:
         print '%s: %s' % (m, m.get_body())
         json_string = m.get_body()
         obj = json.loads(json_string)
         quicklist.add_item(obj)
+      except:
+        print("SQS ERROR PROCESSING ITEM", m.get_body())
+      finally:
         q.delete_message(m)
-    time.sleep(1)
+        time.sleep(1)
+
 
 
 
