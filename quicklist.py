@@ -87,7 +87,7 @@ opts = {
 print("OPTIONS------")
 print(opts)
 
-myitem = {
+EBAY_TEST_ITEM = {
     "Item": {
         "Title": "Harry Potter and the Philosopher's Stone",
         "Description": "This is the first book in the Harry Potter series. In excellent condition!",
@@ -124,6 +124,57 @@ myitem = {
     }
 }
 
+EBAY_ADD_ITEM_TEMPLATE = {
+    "Item": {
+        "Title": "",
+        "Description": "",
+        "PrimaryCategory": {
+            "CategoryID": "377"
+        },
+        "StartPrice": "10.0",
+        "CategoryMappingAllowed": "true",
+        "Country": "US",
+        "ConditionID": "3000",
+        "Currency": "USD",
+        "DispatchTimeMax": "3",
+        "ListingDuration": "Days_7",
+        "ListingType": "Chinese",
+        "PaymentMethods": "PayPal",
+        "PayPalEmailAddress": "tkeefdddder@gmail.com",
+        "PictureDetails": {"PictureURL": "http://i1.sandbox.ebayimg.com/03/i/00/30/07/20_1.JPG?set_id=8800005007"},
+        "PostalCode": "95125",
+        "Quantity": "1",
+        "ReturnPolicy": {
+            "ReturnsAcceptedOption": "ReturnsAccepted",
+            "RefundOption": "MoneyBack",
+            "ReturnsWithinOption": "Days_30",
+            "Description": "If you are not satisfied, return the book for refund.",
+            "ShippingCostPaidByOption": "Buyer"
+        },
+        "ShippingDetails": {
+            "ShippingType": "Flat",
+            "ShippingServiceOptions": {
+                "ShippingServicePriority": "1",
+                "ShippingService": "USPSMedia",
+                "ShippingServiceCost": "2.50"
+            }
+        },
+        "Site": "US"
+    }
+}
+
+
+FILTERED_LABELS = ['person', 'human', 'dog']
+
+def get_keywords_from_labels(n=3):
+
+
+
+
+def build_item(labels, img_url):
+    get_keywords = get_keywords_from_labels()
+
+    return EBAY_ITEM_TEMPLATE
 
 def add_item(labeled_item):
     print("Adding Item", labeled_item)
