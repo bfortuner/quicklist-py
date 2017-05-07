@@ -2,24 +2,20 @@ import datetime
 from ebaysdk.exception import ConnectionError
 from ebaysdk.finding import Connection
 
-EBAY_APP_ID = 'BrendanF-QuickLis-PRD-469e0185b-8aa1f2e3'
 
-
-def search(keywords):
+def search(opts, keywords, category_id, n_listings=100):
     try:
-        api = Connection(appid=EBAY_APP_ID, config_file=None)
-        response = api.execute('findItemsAdvanced', {'keywords': 'legos'})
+        api = Connection(config_file=opts['config_fpath'], appid=opts['appid'])
+        response = api.execute('findItemsAdvanced', {'keywords': keywords})
 
         assert(response.reply.ack == 'Success')
         assert(type(response.reply.timestamp) == datetime.datetime)
         assert(type(response.reply.searchResult.item) == list)
 
-        items = response.reply.searchResult.item
-        item = response.reply.searchResult.item[1]
-        assert(type(item.listingInfo.endTime) == datetime.datetime)
+        items = response.reply.searchResult.item[:n_listings]
         assert(type(response.dict()) == dict)
-        print(len(items))
-        print(response.reply.searchResult.item[1])
+        return response.dict()
+
 
     except ConnectionError as e:
         print(e)

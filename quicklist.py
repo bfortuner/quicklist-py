@@ -1,9 +1,9 @@
 import trading
-#import connect
 import search
 import yaml
 import json
 import os
+import numpy as np
 
 def get_config():
     with open("ebay.yaml", 'r') as stream:
@@ -14,7 +14,7 @@ def get_config():
             print(exc)
 
 config = get_config()
-DOMAIN = 'api.sandbox.ebay.com'
+DOMAIN = 'api.ebay.com'
 S3_URL='https://s3.amazonaws.com/qwiklist/'
 OPTS = {
     'domain':DOMAIN,
@@ -164,7 +164,24 @@ EBAY_ADD_ITEM_TEMPLATE = {
 }
 
 FILTERED_LABELS = set(['person', 'human', 'dog'])
+TEST_KEYWORDS = 'computer mouse'
 
+
+def get_median(lst):
+    return np.median(np.array(lst))
+
+def search_by_keyword(keywords, category_id):
+    items = search.search(OPTS, keywords, category_id)
+    items = items['searchResult']['item']
+    return items
+
+def get_auction_price(keywords, category_id):
+    items = search_by_keyword(keywords, category_id)
+    prices = []
+    for item in items:
+        price = float(item['sellingStatus']['currentPrice']['value'])
+        prices.append(price)
+    return round(get_median(prices),2)
 
 def add_item(predictions):
     labels = get_labels_from_predictions(predictions)
@@ -189,10 +206,12 @@ def build_item(labels, img_url):
     item = EBAY_ADD_ITEM_TEMPLATE.copy()
     item['Item']['Title'] = labels[0]
     item['Item']['Description'] = ' '.join(labels)
-    item['Item']['PrimaryCategory']['CategoryID'] = get_suggested_category(labels)
+    category_id = get_suggested_category(labels)
+    item['Item']['PrimaryCategory']['CategoryID'] = category_id
     item['Item']['PayPalEmailAddress'] = USER_EBAY_EMAIL
     item['Item']['PictureDetails']['PictureURL'] = img_url
-    item['Item']['StartPrice'] = get_item_price(labels)
+    estimated_price = get_auction_price(' '.join(labels), category_id)
+    item['Item']['StartPrice'] = estimated_price
     return item
 
 def get_item_price(keywords):
@@ -256,7 +275,10 @@ def get_suggested_category(labels):
 EBAY_CATEGORIES = load_json_from_file('our_supported_ebay_categories.json')
 
 if __name__ == "__main__":
-    add_item(TEST_PREDICTIONS)
+    labels = get_labels_from_predictions(TEST_PREDICTIONS, 3)
+    print(labels)
+    print(build_item(labels, TEST_IMG_URL))
+    #add_item(TEST_PREDICTIONS)
     #print(get_suggested_category(['laptop','computer']))
     #print(TEST_IMG_URL)
     #upload_picture()
