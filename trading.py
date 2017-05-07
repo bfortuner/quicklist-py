@@ -20,7 +20,7 @@ from ebaysdk.exception import ConnectionError
 from ebaysdk.trading import Connection as Trading
 
 
-EBAY_DOMAIN = 'api.ebay.com'
+EBAY_DOMAIN = 'api.sandbox.ebay.com'
 
 def init_options():
     usage = "usage: %prog [options]"
