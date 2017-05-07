@@ -25,7 +25,7 @@ OPTS = {
     'certid':config[DOMAIN]['certid'],
     'token':config[DOMAIN]['token'],
 }
-USER_EBAY_EMAIL = 'bfortuner@gmail.com' # "tkeefdddder@gmail.com",
+USER_EBAY_EMAIL = 'Jonathan.A.Fernandez@gmail.com' # "tkeefdddder@gmail.com",
 
 TEST_IMG_URL = 'http://s3.amazonaws.com/qwiklist/images/image-11c9cc70-02ec-4fae-89b0-8b0ce026b511.jpg' #'http://i.ebayimg.com/images/g/kLAAAOSwol5Yx1Mf/s-l1600.jpg'#'https://s3.amazonaws.com/qwiklist/images/image2.jpg'
 TEST_PREDICTIONS = {
@@ -204,7 +204,7 @@ def get_labels_from_predictions(predictions, max_labels=5):
 
 def build_item(labels, img_url):
     item = EBAY_ADD_ITEM_TEMPLATE.copy()
-    item['Item']['Title'] = labels[0]
+    item['Item']['Title'] = labels[0]+', '+labels[1]
     item['Item']['Description'] = ' '.join(labels)
     category_id = get_suggested_category(labels)
     item['Item']['PrimaryCategory']['CategoryID'] = category_id

@@ -11,10 +11,10 @@ api.sandbox.ebay.com:
 # Trading API - https://www.x.com/developers/ebay/products/trading-api
 api.ebay.com:
     compatability: 719
-    appid: BrendanF-QuickLis-PRD-469e0185b-8aa1f2e3
-    certid: PRD-69e0185b8c80-09c5-4f0c-82a1-a6fc
-    devid: 794e0675-2845-4410-953a-740f4fa265e0
-    token: AgAAAA**AQAAAA**aAAAAA**KoAOWQ**nY+sHZ2PrBmdj6wVnY+sEZ2PrA2dj6ABl4SjC5eHpwqdj6x9nY+seQ**vboDAA**AAMAAA**JN/xRibWBG6tTKSsIh2N6GrI2xp8O914yLBzZ41KQjBnnThWo2Xn+OX6QCj3/UTZxGUlN29uv+qCnZvfHmZ+VC1F1ud2dWpW5RAlEjzBnA/u2K/1aGECO7reVBEcj7xQ0GB3deyRN/nQtvU3A8uWYfVylSsdXc3fQ2RUlJnPOoPN55oYDwzZv99VgQc7KxRZKc1tcvUNFrqny657gH9GPuuQ8anbdU11zytzGMMjtGkhBMDjelWDJgOtSoWOMIG5+hsnZHVGqusGpfe6L6ytz87NfjbxA7fczno0L2Nr0pZPwpDBHhi0VwkqTWdPUMguwMPenvJPou2XAZ37FJYNWMZfhJhhne3xiw7Yu6lyc25C3Id0fxzpQQX065v2NAot9WVnj3dvJ6btk0MsQYQ5ctJxymzuJpb3yv4GMf+bREBHeaca/nLirVuWE6kNArPdQsWCWcMZZFaMQ0kD4KqmYCPCg1kvIf243MzATOQdjY2lcnXba/M2sNAc3Jf7fHGLNPPl5mL+f8n4es6x5p2BuQm3Q9Ddeh6EV76yllxU6nbn1VI2+wAQBN/CmKXwyy5EpAriXGyUw6TtQeGwZemTRDfYqNQICbREZnzi10czWefxJMQ+HwdDZugwPSjKkVJIG12LR8+Zj7Cyfk44qg3b2FmnvqNQQ401QeeJkLnVp7K4snQhcDx64FNa6P681PMHlUrZO77+jiI4hlxtKlhyDOT5SBJYpvILmZ6GcZ+B24H2bYgMtR7Pd2F5aIMUPpjX
+    appid: JonFerna-qwiklist-PRD-a69e0185b-1b78dc2f
+    certid: PRD-69e0185bc4ac-7626-4246-a6b1-f394
+    devid: b439ae33-7fba-4747-9902-3c4615b03460
+    token: AgAAAA**AQAAAA**aAAAAA**GlQPWQ**nY+sHZ2PrBmdj6wVnY+sEZ2PrA2dj6AEk4CpAJWFqAydj6x9nY+seQ**sboDAA**AAMAAA**RpVWHn56YjWkDayCPm7ID/MIVVVggRlkPTBQ6p83T7OlMwll+XnzcmeGZoCeknqTMmr5gyalWuSn+HZKeNtFJUZyfLSymDNnSxS6EXvLVzXU0uXgzyWAwNl+HT/3ArcoZBcOW2uxY1/hFDqaGl0uKwk5WVCJZwpPbuUCXfDYsMGIrOtnLx/vRMOUZCOALtH4wx/a87j7+M6Rspuqiv53lTFU2Kurlq1UGdvwJM5VwBERUUDmEmxS/DozKAPMGHrFRjJcRlwMWUTh8AIsYoLKoW73MeXCIqZNcYMrYxxc5vvS2BGVc5n2Mj6AcMfNBWYb2peoxKU3ELBcagKpa2xu2BT+SzIpQUSxGp2Exoiw5/0BZnZfgS5H8hwxUoxmgb53Q9gN0DOKI7rHvdLV+ymMXOSivNOk4az9F+KY3kYS8TC/TYXb/nE4VUnxSSZXHj7sWH1MqdMP0tG5NDwQQH6O6qUr0OgnAAqDpnesJM2rUTOFqyGn1fZDhbFFX4usKh0Rxt+NJkhj1zbjU6i9qizRShmTpyjUtuTAKivFyAr9WYn0c3eKNeklSU2iu30crYAW4wLs53zHY2P9Ox3vnbvLWhx6JERigAAb429YD3a10gTk3CDMJcDYSKJ7KuwSvAoKJ04c+fSUP71dFtHvJlVkjRXMdG9ObimlEtxUlyNljLsbfHDuFwXEh2OXcLqtUxUKxkA+oEAmuLjgCCCiIuEPQWyFsp46HH7cBewDPTMpYuknflXoFg7G4wo6B2ACm50w
 
 # Finding API - https://www.x.com/developers/ebay/products/finding-api
 svcs.ebay.com:
