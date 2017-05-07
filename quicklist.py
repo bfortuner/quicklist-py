@@ -191,7 +191,7 @@ def add_item(predictions):
     print("ITEM",item)
     trading.verifyAddItem(OPTS, item)
 
-def get_labels_from_predictions(predictions, max_labels=5):
+def get_labels_from_predictions(predictions, max_labels=3):
     labels = []
     i = 0
     for label in predictions['Labels']['Labels']:
@@ -204,7 +204,7 @@ def get_labels_from_predictions(predictions, max_labels=5):
 
 def build_item(labels, img_url):
     item = EBAY_ADD_ITEM_TEMPLATE.copy()
-    item['Item']['Title'] = ' '.join(labels[:2])
+    item['Item']['Title'] = ' '.join(labels)
     item['Item']['Description'] = ' '.join(labels)
     category_id = get_suggested_category(labels)
     item['Item']['PrimaryCategory']['CategoryID'] = category_id
