@@ -82,8 +82,8 @@ def feedback(opts):
 def getTokenStatus(opts):
 
     try:
-        api = Trading(domain=EBAY_DOMAIN, debug=opts.debug, config_file=opts.yaml, appid=opts.appid,
-                      certid=opts.certid, devid=opts.devid, warnings=False)
+        api = Trading(domain=opts['domain'], debug=opts['debug'], config_file=opts['config_fpath'], appid=opts['appid'],
+                      certid=opts['certid'], devid=opts['devid'], warnings=False)
 
         api.execute('GetTokenStatus')
         dump(api)
@@ -93,53 +93,15 @@ def getTokenStatus(opts):
         print(e.response.dict())
 
 
-def verifyAddItem(opts):
+def verifyAddItem(opts, item):
     """http://www.utilities-online.info/xmltojson/#.UXli2it4avc
     """
 
     try:
-        api = Trading(domain=EBAY_DOMAIN, debug=opts.debug, config_file=opts.yaml, appid=opts.appid,
-                      certid=opts.certid, devid=opts.devid, warnings=False)
-
-        myitem = {
-            "Item": {
-                "Title": "Harry Potter and the Philosopher's Stone",
-                "Description": "This is the first book in the Harry Potter series. In excellent condition!",
-                "PrimaryCategory": {"CategoryID": "377"},
-                "StartPrice": "100.0",
-                "CategoryMappingAllowed": "true",
-                "Country": "US",
-                "ConditionID": "3000",
-                "Currency": "USD",
-                "DispatchTimeMax": "3",
-                "ListingDuration": "Days_7",
-                "ListingType": "English",
-                "PaymentMethods": "PayPal",
-                "PayPalEmailAddress": "Jonathan.A.Fernandez@gmail.com",
-                "PictureDetails": {"PictureURL": "http://i1.sandbox.ebayimg.com/03/i/00/30/07/20_1.JPG?set_id=8800005007"},
-                "PostalCode": "98119",
-                "Quantity": "1",
-                "ReturnPolicy": {
-                    "ReturnsAcceptedOption": "ReturnsAccepted",
-                    "RefundOption": "MoneyBack",
-                    "ReturnsWithinOption": "Days_30",
-                    "Description": "If you are not satisfied, return the book for refund.",
-                    "ShippingCostPaidByOption": "Buyer"
-                },
-                "ShippingDetails": {
-                    "ShippingType": "Flat",
-                    "ShippingServiceOptions": {
-                        "ShippingServicePriority": "1",
-                        "ShippingService": "USPSMedia",
-                        "ShippingServiceCost": "2.50"
-                    }
-                },
-                "Site": "US"
-            }
-        }
-        print("hey")
-        api.execute('AddItem', myitem)
-        print(api)
+        api = Trading(domain=opts['domain'], debug=opts['debug'], config_file=opts['config_fpath'], appid=opts['appid'],
+                      certid=opts['certid'], devid=opts['devid'], warnings=False)
+        print("Creating item...")
+        api.execute('AddItem', item)
         dump(api)
 
     except ConnectionError as e:

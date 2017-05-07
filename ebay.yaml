@@ -5,6 +5,7 @@ api.sandbox.ebay.com:
     compatability: 719
     appid: BSBX-08fe9d67e9d4-c707-4a33-93b5-177a
     devid: 794e0675-2845-4410-953a-740f4fa265e0
+    certid: FAKE_ID
     token: AgAAAA**AQAAAA**aAAAAA**BIAOWQ**nY+sHZ2PrBmdj6wVnY+sEZ2PrA2dj6wFk4GlAZOApQydj6x9nY+seQ**0zAEAA**AAMAAA**5Rcecfj8H0oNoa8VTq9gGp7WUDb8TZI9T5KcGa17DTgg0YL5qVRL0fJMj+Nyue0DeoH+jvZeMRMpViBJPHvvMf7HKTviBAZi/4fWZNICUQsFCdaybrlMGJMZ+7njmTaucveiGiSpPaLl2kCwsAbRCXMl+EhqfV0HqDezVL0IJNNudI0jPJzxqLscKvGRVfmirIhgnGFrjDLfbf3lq1iUJ+X2cN4PgcV9OyuzlO40mIAkCvTXb+HyLdrktEgBnWophZpymtNOooPZEJK/3GfZwjZDgArAsZnWHU4mVmx3sqDA88g85dBxsMEVBDsGGB30cP9J8mCxWjdllxAVUq1CXCjfkaQhSQO2brBnhZ8g0B2WIeB1HH98beqZLQ9IRPAQKWhr/s7ioEEIYIH3H0yXNtSQz1foQwmlqpD6SMybyqObx2kS51g7YAuA2tS6r6T7ITv4O5arfioT8jGbHtNwikJmP2HmtQUZrZPL3HLLdUj5KaJ3R1tRkLqcdqb0q1L7BDZUtZpmvbH3yt8FrBJfu+fla6sZxHGaO624CHeIKBjMoM+vh0Kvmcel/zyReP78pVlhgo36OmxNUcZY2uOkTaQw3wOw08wuF+QS6RxGKWaEtmCN0t/X9O1KB06QUTlzVGrJA9DM7G1kRfeI5KpK53PTJsqskODPyCSxfO8Ngj1rpM1Ch3fNI8Sux2wcgjdRxmwaTrTOPBokfDxQ7SL1KgmsYrOJC6k9T+Mdz5lL0w9+M/SVvkx1hoHvldFHC5Cl
 
 # Trading API - https://www.x.com/developers/ebay/products/trading-api
